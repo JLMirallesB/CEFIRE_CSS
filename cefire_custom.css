@@ -1,0 +1,646 @@
+/* ==================== RENDERIZADO ==================== */
+:root {
+    --text-color: #333c4a;
+    --primary-color: #4070cc;
+    --bg-color: #f8f7f2; /* Color de fondo actualizado a tono crema suave */
+    --side-bar-bg-color: var(--bg-color);
+    --marker-color: #8090a8;
+    --highlight-color: #fff59d;
+    --header-span-color: var(--primary-color);
+    --block-bg-color: #c0f5d0;
+    --img-shadow-color: #e3e8f0;
+    --heading-bgcolor: unset;
+    --preformatted-text-bgcolor: var(--block-bg-color);
+    --link-color: #0050bb;
+    --container-width: min(90%, 1200px);
+    --heading-padding: 15px;
+    --content-margin: clamp(15px, 3%, 30px);
+    --content-width: calc(100% - (var(--content-margin) * 2));
+	--code-bg-color: #2d3035;
+	--code-text-color: #7fb5e6;
+	--code-border-color: #4a6fa5;
+}
+body {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-family: 'Cantarell', 'Arial', sans-serif;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+/* ==================== ENCABEZADOS ==================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    padding: 0;
+    background-color: unset;
+    border-bottom: unset;
+    margin-left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+}
+h1 {
+    background: linear-gradient(to right, #cdffd8, #93b9ff);
+    width: 100%;
+    color: #40464f;
+    padding: var(--heading-padding);
+    margin: 0 0 2.3rem 0;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    border-radius: 0;
+    counter-reset: h2counter;
+}
+h2 {
+    background: linear-gradient(to right, #cdffd8, #93b9ff);
+    width: 100%;
+    color: #40464f;
+    padding: var(--heading-padding);
+    border-radius: 0;
+    display: block;
+    margin: 0.3em 0;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    counter-reset: h3counter;
+}
+h3 {
+    color: var(--primary-color);
+    margin: 1em 0 1em 0;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    counter-reset: h4counter;
+    padding-left: var(--heading-padding);
+}
+h4 {
+    color: var(--primary-color);
+    margin: 0.8em 0 0.8em 0;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    counter-reset: h5counter;
+    padding-left: var(--heading-padding);
+}
+h5 {
+    color: var(--primary-color);
+    margin: 0.6em 0 0.6em 0;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    counter-reset: h6counter;
+    padding-left: var(--heading-padding);
+}
+h6 {
+    color: var(--primary-color);
+    margin: 0.4em 0 0.4em 0;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    padding-left: var(--heading-padding);
+}
+/* Sistema de numeración de encabezados empezando desde h2 */
+h2:before {
+    counter-increment: h2counter;
+    content: counter(h2counter) ".\0000a0\0000a0";
+}
+h3:before {
+    counter-increment: h3counter;
+    content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+}
+h4:before {
+    counter-increment: h4counter;
+    content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
+}
+h5:before {
+    counter-increment: h5counter;
+    content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) ".\0000a0\0000a0";
+}
+h6:before {
+    counter-increment: h6counter;
+    content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) "." counter(h6counter) ".\0000a0\0000a0";
+}
+/* Para cuando está activo el plugins de links de encabezados */
+.cai-lh { display: inline; }
+.cai-oi { display: inline; }
+.cai-of { display: inline; }
+.cai-li { display: inline; }
+.cai-gi { display: inline; }
+.cai-gh { display: inline; }
+h1 span.copy-anchor-icon, h2 span.copy-anchor-icon, h3 span.copy-anchor-icon {
+    display: none;
+}
+h1:hover span.copy-anchor-icon, h2:hover span.copy-anchor-icon, h3:hover span.copy-anchor-icon {
+    display: inline;
+}
+/* ==================== ENLACES ==================== */
+a {
+    color: var(--link-color);
+    text-decoration: underline solid;
+    text-decoration-thickness: 1.2px;
+    text-underline-offset: 2px;
+}
+a:hover {
+    color: #003d99;
+}
+/* ==================== CÓDIGO ==================== */
+code {
+    color: #7fb5e6;
+    font-size: 94%;
+    font-weight: normal;
+    word-wrap: break-word;
+    padding: 2px 4px 2px;
+    border-radius: 3px;
+    margin: 2px;
+    background-color: #2d3035;
+    font-family: monospace;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+pre code {
+    color: #9fc7e8;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    font-size: inherit;
+    word-break: normal;
+    white-space: pre-wrap;
+}
+pre {
+    background-color: #1e2127;
+    padding: 1.2rem 0.8rem;
+    border-radius: 10px;
+    border-left: 3px solid #4a6fa5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 1.5rem var(--content-margin);
+    line-height: 1.6rem;
+    width: calc(100% - (var(--content-margin) * 2));
+    box-sizing: border-box;
+    overflow-x: auto;
+    color: #9fc7e8;
+}
+/* ==================== LISTAS ==================== */
+ul, ol {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: var(--content-margin);
+    width: calc(100% - var(--content-margin) - 20px);
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+li {
+    margin: 0.4rem 0;
+    line-height: 1.7rem;
+}
+ul { list-style-type: disc; }
+ul ul {
+    list-style-type: square;
+    width: calc(100% - 20px);
+}
+ol { list-style-type: decimal; }
+::marker {
+    font-weight: bold;
+    color: var(--marker-color);
+}
+/* ==================== PÁRRAFOS Y TEXTO ==================== */
+p {
+    margin-left: var(--content-margin);
+    width: calc(100% - (var(--content-margin) * 2));
+    box-sizing: border-box;
+}
+strong {
+    color: #000000;
+    font-weight: 900;
+}
+mark {
+    background: var(--highlight-color);
+    padding: 1px .15rem;
+    border-radius: 1px;
+    color: inherit;
+}
+/* ==================== CITAS ==================== */
+blockquote {
+    display: block;
+    font-size: .9em;
+    overflow: auto;
+    border-left: 3px solid var(--primary-color);
+    padding: 15px 30px 15px 20px;
+    margin: 20px 0 20px calc(var(--content-margin) + 15px);
+    background: var(--block-bg-color);
+    color: #000000;
+    width: calc(100% - var(--content-margin) - 15px - 50px);
+    box-sizing: border-box;
+}
+/* ==================== LÍNEAS HORIZONTALES ==================== */
+hr {
+    margin: 20px 0;
+    border: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, #cdffd8, #93b9ff);
+    border-radius: 0;
+    width: 100%;
+}
+/* ==================== TABLAS ==================== */
+table, th, td {
+    font-family: 'Cantarell', 'Arial', sans-serif;
+    font-size: inherit;
+}
+table {
+    display: block;
+    text-align: justify;
+    overflow-x: auto;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin: 0 0 20px var(--content-margin);
+    width: calc(100% - (var(--content-margin) * 2));
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+tbody { border: 0; }
+table tr { border: 0; border-top: 1px solid #ccc; }
+table tr th, table tr td {
+    border: 1px solid #d9dfe4;
+    padding: 5px 10px;
+    text-align: justify;
+}
+table tr td {
+    background-color: #ffffff;
+    color: #000000;
+}
+table tr th {
+    text-align: center;
+    min-width: 6rem;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: #f0f4f8;
+}
+/* ==================== CALLOUTS ==================== */
+b-gray, b-green, b-red, b-blue, b-orange, b-pink, b-purple, b-cefire {
+    width: calc(100% - var(--content-margin) - 20px);
+    display: block;
+    margin: 20px 0 20px var(--content-margin);
+    padding: 10px;
+    border: 1px solid;
+    border-left: 5px solid;
+    border-radius: 2px;
+    word-wrap: break-word;
+    box-shadow: 3px 3px 7px 0 rgba(0,0,0,0.1);
+    color: #000000;
+    box-sizing: border-box;
+}
+b-gray   { border-color: #8090a0; background-color: #e8ecf0; }
+b-green  { border-color: #38a060; background-color: #c8f5d8; }
+b-red    { border-color: #cc3333; background-color: #f8d0d0; }
+b-blue   { border-color: var(--primary-color); background-color: #d3e5fa; }
+b-orange { border-color: #b86808; background-color: #f8ecc8; }
+b-purple { border-color: #7840c8; background-color: #e8d0f8; }
+b-pink   { border-color: #cc3878; background-color: #f8d0e8; }
+b-cefire {
+    border-color: #93b9ff;
+    background: linear-gradient(to right, rgba(205, 255, 216, 0.4), rgba(147, 185, 255, 0.4));
+}
+/* ==================== EXPORTACIÓN ==================== */
+.exported-note { color: var(--text-color); background-color: var(--bg-color); }
+.exported-note code {
+    white-space: pre-wrap;
+    color: #7fb5e6;
+    background-color: #2d3035;
+    padding: 2px 4px 2px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+.exported-note pre {
+    background-color: #1e2127;
+    color: #9fc7e8;
+    padding: 1.2rem 0.8rem;
+    border-radius: 10px;
+    border-left: 3px solid #4a6fa5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.exported-note pre code { background-color: transparent; color: #9fc7e8; padding: 0; border-radius: 0; }
+.exported-note a { color: var(--link-color); }
+.exported-note a:hover { color: #003d99; }
+.exported-note-title { display: none !important; }
+/* ==================== IMÁGENES ==================== */
+img {
+    margin: 0 auto;
+    max-width: 100%;
+    filter: drop-shadow(var(--img-shadow-color) 0px 6px 6px);
+    display: block;
+}
+/* ==================== DETALLES Y RESÚMENES ==================== */
+summary, details {
+    margin-left: var(--content-margin);
+    width: calc(100% - (var(--content-margin) * 2));
+    box-sizing: border-box;
+}
+details > * { margin-left: 15px; }
+details > summary { margin-left: 0; cursor: pointer; }
+/* ==================== DIAGRAMAS MERMAID ==================== */
+.mermaid {
+    margin-left: var(--content-margin);
+    width: calc(100% - (var(--content-margin) * 2));
+    max-width: 100%;
+    overflow-x: auto;
+    background-color: #1e1e2e;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px;
+}
+pre.mermaid, div.mermaid { background-color: #1e1e2e; padding: 15px; border-radius: 10px; }
+.mermaid svg { display: block; margin: 0 auto; max-width: 100%; }
+code { white-space: pre-wrap; }
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 480px) {
+    :root { --content-margin: 10px; }
+    h1, h2, h3, h4, h5, h6 { word-wrap: break-word; }
+    body { text-align: left; }
+    table tr th { min-width: 4rem; }
+    pre { padding: 0.8rem 0.5rem; }
+    blockquote {
+        padding: 10px 15px 10px 15px;
+        margin: 15px 0 15px var(--content-margin);
+        width: calc(100% - (var(--content-margin) * 2));
+    }
+}
+/* ==================== CAJAS CON TÍTULO (b-title) ==================== */
+b-title {
+    display: block;
+    font-weight: bold;
+    margin: -10px -10px 12px -10px;
+    padding: 7px 14px;
+    border-radius: 1px 1px 0 0;
+    font-size: 0.85em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+b-gray   b-title { background-color: #b8c4cc; color: #1e1e1e; }
+b-green  b-title { background-color: #78c898; color: #0a3318; }
+b-red    b-title { background-color: #f0aaaa; color: #5a0808; }
+b-blue   b-title { background-color: #a0c0f0; color: #08205a; }
+b-orange b-title { background-color: #d4b858; color: #3a1800; }
+b-purple b-title { background-color: #b070e0; color: #ffffff; }
+b-pink   b-title { background-color: #e870a8; color: #ffffff; }
+b-cefire b-title { background: linear-gradient(to right, #9de8b4, #93b9ff); color: #08205a; }
+/* Resetear márgenes de p, details y summary dentro de cajas */
+b-gray p, b-green p, b-red p, b-blue p,
+b-orange p, b-purple p, b-pink p, b-cefire p,
+b-gray details, b-green details, b-red details, b-blue details,
+b-orange details, b-purple details, b-pink details, b-cefire details,
+b-gray summary, b-green summary, b-red summary, b-blue summary,
+b-orange summary, b-purple summary, b-pink summary, b-cefire summary {
+    margin-left: 0;
+    width: 100%;
+}
+/* ==================== B-TITLE DENTRO DE SUMMARY ==================== */
+summary:has(b-title) { list-style: none; }
+summary:has(b-title)::-webkit-details-marker { display: none; }
+summary b-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+summary b-title::before {
+    content: '▶';
+    margin-right: 8px;
+    font-size: 0.85em;
+    opacity: 0.65;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+details[open] summary b-title::before { transform: rotate(90deg); }
+/* ==================== BARRAS DE PROGRESO ==================== */
+.pbar-label {
+    font-size: 0.82em;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+}
+.pbar {
+    height: 15px;
+    background-color: #dde2ea;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 11px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.13);
+}
+.pfill { height: 100%; border-radius: 10px; }
+.pfill-blue   { background: linear-gradient(90deg, #2c5cb8, #4070cc); }
+.pfill-green  { background: linear-gradient(90deg, #3db860, #7ae8a0); }
+.pfill-orange { background: linear-gradient(90deg, #cc7a00, #ffb840); }
+.pfill-red    { background: linear-gradient(90deg, #cc3030, #ff8080); }
+.pfill-purple { background: linear-gradient(90deg, #8840d8, #c080f5); }
+/* ==================== STAT BOXES ==================== */
+stat-box {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #d0d8e8;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.09);
+    margin: 6px 4px;
+    min-width: 90px;
+    vertical-align: top;
+}
+stat-num {
+    display: block;
+    font-size: 2em;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+stat-label {
+    display: block;
+    font-size: 0.7em;
+    color: #888;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+/* ==================== BADGES ==================== */
+badge-green, badge-red, badge-blue, badge-orange,
+badge-gray, badge-purple, badge-pink, badge-cefire {
+    display: inline-block;
+    padding: 1px 9px;
+    border-radius: 12px;
+    font-size: 0.76em;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    vertical-align: middle;
+    line-height: 1.9;
+    white-space: nowrap;
+    border: 1px solid;
+}
+badge-green  { background: #c8f5d8; color: #0a3318; border-color: #38a060; }
+badge-red    { background: #f8d0d0; color: #5a0808; border-color: #cc3333; }
+badge-blue   { background: #d0e4f8; color: #08205a; border-color: var(--primary-color); }
+badge-orange { background: #f8ecc8; color: #4a2000; border-color: #b86808; }
+badge-gray   { background: #e8ecf0; color: #333;    border-color: #8090a0; }
+badge-purple { background: #e8d0f8; color: #250050; border-color: #7840c8; }
+badge-pink   { background: #f8d0e8; color: #580020; border-color: #cc3878; }
+badge-cefire {
+    background: linear-gradient(to right, rgba(205,255,216,0.55), rgba(147,185,255,0.55));
+    color: #08205a;
+    border-color: var(--primary-color);
+}
+/* ==================== PASOS NUMERADOS ==================== */
+steps {
+    display: block;
+    counter-reset: step-counter;
+    margin: 15px var(--content-margin);
+    width: calc(100% - var(--content-margin) * 2);
+    box-sizing: border-box;
+}
+step {
+    display: block;
+    counter-increment: step-counter;
+    position: relative;
+    padding: 8px 12px 8px 50px;
+    margin-bottom: 10px;
+    min-height: 36px;
+    background: var(--bg-color);
+    border-radius: 6px;
+    border: 1px solid #d0d8e8;
+    box-sizing: border-box;
+}
+step::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d0f8e0, #a8c8f8);
+    color: #08205a;
+    font-weight: 900;
+    font-size: 0.85em;
+    text-align: center;
+    line-height: 28px;
+}
+step:last-child { margin-bottom: 0; }
+/* ==================== SEPARADOR CON ETIQUETA ==================== */
+sec-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px var(--content-margin);
+    font-size: 0.75em;
+    color: var(--marker-color);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: bold;
+    width: calc(100% - var(--content-margin) * 2);
+    box-sizing: border-box;
+}
+sec-label::before, sec-label::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--block-bg-color), var(--primary-color));
+    border-radius: 2px;
+}
+sec-label::after {
+    background: linear-gradient(to left, var(--block-bg-color), var(--primary-color));
+}
+/* ==================== INDICADOR DE NIVEL ==================== */
+nivel-1, nivel-2, nivel-3, nivel-4, nivel-5 {
+    display: inline-block;
+    font-size: 0.85em;
+    letter-spacing: 3px;
+    vertical-align: middle;
+}
+nivel-1::before { content: '⬤◯◯◯◯'; color: #3db860; }
+nivel-2::before { content: '⬤⬤◯◯◯'; color: var(--primary-color); }
+nivel-3::before { content: '⬤⬤⬤◯◯'; color: #ffb840; }
+nivel-4::before { content: '⬤⬤⬤⬤◯'; color: #ff8080; }
+nivel-5::before { content: '⬤⬤⬤⬤⬤'; color: #af74e8; }
+/* ==================== CITA CON AUTOR ==================== */
+cite-author {
+    display: block;
+    text-align: right;
+    font-style: italic;
+    font-size: 0.85em;
+    color: #445566;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--primary-color);
+}
+cite-author::before { content: '— '; }
+/* ==================== GLOSARIO (DEFLIST) ==================== */
+dl {
+    margin: 12px var(--content-margin);
+    width: calc(100% - var(--content-margin) * 2);
+    box-sizing: border-box;
+}
+dt {
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 5px 12px;
+    margin-top: 10px;
+    background: rgba(64, 112, 204, 0.12);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+dt:first-child { margin-top: 0; }
+dd {
+    margin: 0 0 4px 0;
+    padding: 5px 12px 5px 20px;
+    border-left: 1px solid #d0d8e8;
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+/* ==================== TABLA DE CONTENIDOS (TOC) ==================== */
+.table-of-contents {
+    margin: 15px var(--content-margin);
+    width: calc(100% - var(--content-margin) * 2);
+    box-sizing: border-box;
+}
+.table-of-contents li {
+    list-style: none;
+    margin: 0.1rem 0;
+    line-height: 1.45;
+}
+.table-of-contents ul {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 10px;
+}
+/* Nivel 1 = h1 (título del documento): sin número */
+.table-of-contents > ul { padding-left: 0; }
+.table-of-contents > ul > li { counter-reset: toc-h2; }
+/* h2 → 1. */
+.table-of-contents > ul > li > ul > li {
+    counter-increment: toc-h2;
+    counter-reset: toc-h3;
+}
+.table-of-contents > ul > li > ul > li > a::before {
+    content: counter(toc-h2) ".\0000a0\0000a0";
+}
+/* h3 → 1.1. */
+.table-of-contents > ul > li > ul > li > ul > li {
+    counter-increment: toc-h3;
+    counter-reset: toc-h4;
+}
+.table-of-contents > ul > li > ul > li > ul > li > a::before {
+    content: counter(toc-h2) "." counter(toc-h3) ".\0000a0\0000a0";
+}
+/* h4 → 1.1.1. */
+.table-of-contents > ul > li > ul > li > ul > li > ul > li {
+    counter-increment: toc-h4;
+    counter-reset: toc-h5;
+}
+.table-of-contents > ul > li > ul > li > ul > li > ul > li > a::before {
+    content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) ".\0000a0\0000a0";
+}
+/* h5 → 1.1.1.1. */
+.table-of-contents > ul > li > ul > li > ul > li > ul > li > ul > li {
+    counter-increment: toc-h5;
+    counter-reset: toc-h6;
+}
+.table-of-contents > ul > li > ul > li > ul > li > ul > li > ul > li > a::before {
+    content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5) ".\0000a0\0000a0";
+}
+/* h6 → 1.1.1.1.1. */
+.table-of-contents > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li {
+    counter-increment: toc-h6;
+}
+.table-of-contents > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a::before {
+    content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5) "." counter(toc-h6) ".\0000a0\0000a0";
+}
