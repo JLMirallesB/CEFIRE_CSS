@@ -1,6 +1,15 @@
 # CEFIRE CSS — Custom Joplin Stylesheet
 
-A custom CSS stylesheet for Joplin tailored for CEFIRE educational materials. Version 2.0 introduces an accessible color palette (WCAG AA compliant) and a rich set of custom HTML elements that extend Joplin's default rendering.
+[CEFIRE](https://portal.edu.gva.es/cefire/) is the **Centro de Formación del Profesorado de la Comunitat Valenciana** (Spain) — the regional teacher training centre. This stylesheet was created to adapt Joplin's note rendering to CEFIRE's corporate visual identity for producing training and instructional materials.
+
+The code is released freely for anyone wishing to adapt it to a different corporate palette or visual identity.
+
+**Design philosophy:** the goal is to maintain a balance between the simplicity of Markdown and the introduction of a minimal set of HTML elements that add visual richness and improve the presentation of materials in line with Instructional Design principles.
+
+## Preview
+
+![Demo screenshot 1](demo_01.png)
+![Demo screenshot 2](demo_02.png)
 
 ## Color Palette
 
@@ -135,13 +144,19 @@ Add to your note:
 
 ## Usage
 
+### Option A — Global stylesheet
+
 Paste the contents of `cefire_custom.css` into **Joplin → Preferences → Appearance → Custom stylesheet for rendered Markdown**.
 
-Alternatively, create a dedicated Joplin note with the CSS and import it into other notes using:
+### Option B — Per-note import
+
+Create a dedicated Joplin note with the CSS content and import it selectively into any note using:
 
 ```html
 <style>@import ":/<NOTE_ID>";</style>
 ```
+
+This method requires the [**Import Local CSS**](https://joplinapp.org/plugins/plugin/io.github.personalizedrefrigerator.import-local-css/) plugin.
 
 ## Changelog
 
