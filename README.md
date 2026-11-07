@@ -164,3 +164,18 @@ This method requires the [**Import Local CSS**](https://joplinapp.org/plugins/pl
 |---|---|
 | 2.0 | Accessible color palette (WCAG AA), `b-title`, collapsible boxes, progress bars, stat boxes, badges, numbered steps, `sec-label`, level indicators, author citations, deflist styling, auto-numbered TOC |
 | 1.0 | Base stylesheet — callout boxes, details/summary, heading counters, tables, code blocks, Mermaid diagrams |
+
+## Author
+
+**José Luis Miralles Bono** · [jlmirall.es](https://jlmirall.es) · joseluismirallesbono@gmail.com ·
+☕ [Buy me a horchata](https://ko-fi.com/miralles)
+
+More info (in Spanish): [v2 del CSS para Joplin con imagen corporativa del CEFIRE](https://elpulpoenelvaso.jlmirall.es/?p=643)
+
+## License
+
+© 2025 José Luis Miralles Bono
+
+- **Code** (`cefire_custom.css`): [GNU AGPL v3](LICENSE). You may use, study, modify and redistribute it, also
+  commercially, as long as anything you derive from it is published under the same license with its source code.
+- **Content** (documentation, examples, screenshots): [CC BY-SA 4.0](LICENSE-CONTENIDOS).
